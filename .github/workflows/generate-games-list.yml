@@ -1,0 +1,102 @@
+name: Generate Games List
+
+on:
+  push:
+    paths:
+      - 'Games/**'
+      - 'iframe/**'
+  workflow_dispatch:
+
+jobs:
+  generate-list:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan Games folder and generate games.json
+        run: |
+          echo "Scanning Games folder..."
+
+          # Start JSON array
+          echo "[" > games.json
+
+          first=true
+
+          # Loop through all items in the Games folder (files and subdirectories)
+          for entry in Games/*/; do
+            # Check if it's a directory (each game is a folder)
+            if [ -d "$entry" ]; then
+              gameName=$(basename "$entry")
+              
+              # Check if a matching iframe file exists
+              iframeFile="iframe/${gameName}.html"
+              
+              if [ -f "$iframeFile" ]; then
+                hasIframe="true"
+              else
+                hasIframe="false"
+              fi
+
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo "," >> games.json
+              fi
+
+              echo "  {" >> games.json
+              echo "    \"name\": \"${gameName}\"," >> games.json
+              echo "    \"path\": \"Games/${gameName}\"," >> games.json
+              echo "    \"iframe\": \"iframe/${gameName}.html\"," >> games.json
+              echo "    \"hasIframe\": ${hasIframe}" >> games.json
+              echo -n "  }" >> games.json
+            fi
+          done
+
+          # Also scan for direct HTML files in Games/ (not just folders)
+          for entry in Games/*.html; do
+            if [ -f "$entry" ]; then
+              gameName=$(basename "$entry" .html)
+
+              iframeFile="iframe/${gameName}.html"
+              if [ -f "$iframeFile" ]; then
+                hasIframe="true"
+              else
+                hasIframe="false"
+              fi
+
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo "," >> games.json
+              fi
+
+              echo "  {" >> games.json
+              echo "    \"name\": \"${gameName}\"," >> games.json
+              echo "    \"path\": \"Games/${gameName}.html\"," >> games.json
+              echo "    \"iframe\": \"iframe/${gameName}.html\"," >> games.json
+              echo "    \"hasIframe\": ${hasIframe}" >> games.json
+              echo -n "  }" >> games.json
+            fi
+          done
+
+          echo "" >> games.json
+          echo "]" >> games.json
+
+          echo "games.json generated:"
+          cat games.json
+
+      - name: Commit games.json
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add games.json
+          if git diff --staged --quiet; then
+            echo "No changes to games.json, skipping commit."
+          else
+            git commit -m "chore: update games.json [skip ci]"
+            git push
+          fi
