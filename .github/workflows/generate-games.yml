@@ -1,0 +1,35 @@
+name: Generate games.json
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate games.json
+        run: |
+          echo "[" > games.json
+          first=true
+          for dir in Games/*/; do
+            name=$(basename "$dir")
+            if [ "$first" = true ]; then
+              first=false
+            else
+              echo "," >> games.json
+            fi
+            echo "  \"$name\"" >> games.json
+          done
+          echo "]" >> games.json
+
+      - name: Commit games.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add games.json
+          git diff --cached --quiet || git commit -m "update games.json"
+          git push
