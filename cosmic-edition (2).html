@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmic Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ============================================================
+       CSS VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --bg-deep:       #0B0F1A;
+      --bg-panel:      #0F1626;
+      --bg-card:       #131b2e;
+      --bg-card-hover: #1a2540;
+      --accent:        #4FC3F7;
+      --accent-dim:    #2a7fa8;
+      --accent-glow:   rgba(79, 195, 247, 0.35);
+      --accent-glow2:  rgba(79, 195, 247, 0.12);
+      --text-primary:  #e8f4fd;
+      --text-secondary:#7eb8d4;
+      --text-muted:    #3d5a70;
+      --border:        rgba(79, 195, 247, 0.18);
+      --border-hover:  rgba(79, 195, 247, 0.55);
+      --nav-width:     260px;
+      --nav-collapsed: 68px;
+      --transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       STAR CANVAS BACKGROUND
+    ============================================================ */
+    #star-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       APP SHELL
+    ============================================================ */
+    #app {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ============================================================
+       SIDE NAVIGATION
+    ============================================================ */
+    #sidebar {
+      width: var(--nav-width);
+      min-width: var(--nav-width);
+      background: linear-gradient(180deg, #0d1423 0%, #0a0e1a 100%);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: width var(--transition), min-width var(--transition);
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+
+    #sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    /* Logo / Brand */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: radial-gradient(circle at 40% 40%, #4FC3F7, #0a4a6e);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      box-shadow: 0 0 16px var(--accent-glow);
+      color: #fff;
+    }
+
+    .brand-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-shadow: 0 0 12px var(--accent-glow);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 300;
+    }
+
+    /* Search */
+    .search-wrap {
+      padding: 16px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .search-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .search-inner:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow2);
+    }
+
+    .search-icon { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+
+    #search-input {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      width: 100%;
+      letter-spacing: 0.5px;
+    }
+
+    #search-input::placeholder { color: var(--text-muted); }
+
+    /* Nav sections */
+    .nav-section-label {
+      font-family: 'Orbitron', monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      padding: 14px 20px 6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Nav links */
+    .nav-links {
+      list-style: none;
+      padding: 0 10px;
+    }
+
+    .nav-links li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      background: var(--bg-card-hover);
+      color: var(--accent);
+    }
+
+    .nav-links li a .nav-icon { font-size: 14px; flex-shrink: 0; width: 20px; text-align: center; }
+
+    /* Game list */
+    #game-list-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 10px 10px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-dim) transparent;
+    }
+
+    #game-list-wrap::-webkit-scrollbar { width: 4px; }
+    #game-list-wrap::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 4px; }
+
+    /* Game buttons in sidebar */
+    .game-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      margin-bottom: 6px;
+      position: relative;
+    }
+
+    .game-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-glow2) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .game-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 0 18px var(--accent-glow2), inset 0 0 12px rgba(79, 195, 247, 0.05);
+      transform: translateX(3px);
+    }
+
+    .game-btn:hover::before { opacity: 1; }
+
+    .game-btn-icon {
+      font-size: 15px;
+      flex-shrink: 0;
+      width: 22px;
+      text-align: center;
+      color: var(--accent);
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+
+    .game-btn-title {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .game-btn-arrow {
+      font-size: 10px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: color var(--transition);
+    }
+
+    .game-btn:hover .game-btn-arrow { color: var(--accent); }
+
+    .no-results {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      padding: 20px 10px;
+      display: none;
+    }
+
+    /* Sidebar footer */
+    .sidebar-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       MAIN CONTENT
+    ============================================================ */
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Top bar */
+    #topbar {
+      height: 60px;
+      min-height: 60px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      gap: 16px;
+      background: rgba(11, 15, 26, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    #topbar h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--text-secondary);
+    }
+
+    #topbar h1 span { color: var(--accent); }
+
+    .topbar-spacer { flex: 1; }
+
+    .game-count-badge {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--accent);
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 1px;
+    }
+
+    /* Hero / Home content */
+    #home-view {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 40px 40px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-dim) transparent;
+    }
+
+    #home-view::-webkit-scrollbar { width: 4px; }
+    #home-view::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 4px; }
+
+    .hero {
+      max-width: 700px;
+      margin-bottom: 50px;
+      animation: fadeSlideUp 0.7s ease both;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Orbitron', monospace;
+      font-size: 10px;
+      letter-spacing: 5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      text-shadow: 0 0 40px rgba(79, 195, 247, 0.2);
+    }
+
+    .hero h2 em {
+      font-style: normal;
+      color: var(--accent);
+      text-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .hero p {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* Game grid on main view */
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    #game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      animation: fadeSlideUp 0.9s ease both;
+    }
+
+    /* Game cards on main grid */
+    .game-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 20px 22px;
+      cursor: pointer;
+      text-align: center;
+      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .game-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      box-shadow: 0 8px 40px rgba(79, 195, 247, 0.15), 0 0 0 1px rgba(79,195,247,0.1);
+      transform: translateY(-4px);
+    }
+
+    .game-card:hover::before { opacity: 1; }
+
+    .game-card-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+      display: block;
+      color: var(--accent);
+      filter: drop-shadow(0 0 10px var(--accent));
+    }
+
+    .game-card-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .game-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .game-card-launch {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-family: 'Orbitron', monospace;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--accent);
+      padding: 6px 16px;
+      border: 1px solid rgba(79, 195, 247, 0.3);
+      border-radius: 20px;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .game-card-launch i { font-size: 9px; }
+
+    .game-card:hover .game-card-launch {
+      background: var(--accent-glow2);
+      box-shadow: 0 0 14px var(--accent-glow2);
+    }
+
+    /* ============================================================
+       GAME OVERLAY
+    ============================================================ */
+    #overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(6, 9, 16, 0.92);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    #overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .overlay-window {
+      width: 92vw;
+      height: 88vh;
+      max-width: 1300px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-hover);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(79, 195, 247, 0.12), 0 40px 80px rgba(0,0,0,0.6);
+      transform: scale(0.96) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #overlay.active .overlay-window {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Overlay title bar */
+    .overlay-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13, 20, 35, 0.9);
+      flex-shrink: 0;
+    }
+
+    .overlay-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .overlay-dots span {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red   { background: #ff5f57; }
+    .dot-yellow{ background: #ffbd2e; }
+    .dot-green { background: #28ca41; }
+
+    #overlay-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      flex: 1;
+      text-align: center;
+    }
+
+    .overlay-controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .ov-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+      letter-spacing: 0.5px;
+    }
+
+    .ov-btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow2);
+    }
+
+    .ov-btn-close {
+      border-color: rgba(255, 95, 87, 0.3);
+      color: #ff8a84;
+    }
+
+    .ov-btn-close:hover {
+      background: rgba(255, 95, 87, 0.1);
+      border-color: #ff5f57;
+      color: #ff5f57;
+      box-shadow: 0 0 10px rgba(255, 95, 87, 0.2);
+    }
+
+    /* iFrame */
+    #game-frame {
+      flex: 1;
+      border: none;
+      display: block;
+      background: #000;
+    }
+
+    /* ============================================================
+       ABOUT PANEL (toggleable)
+    ============================================================ */
+    #about-view {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      padding: 50px 40px;
+      animation: fadeSlideUp 0.5s ease both;
+    }
+
+    #about-view.visible { display: block; }
+    #home-view.hidden { display: none; }
+
+    .about-card {
+      max-width: 620px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+    }
+
+    .about-card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .about-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .about-card code {
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 13px;
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 760px) {
+      #sidebar { width: var(--nav-collapsed); min-width: var(--nav-collapsed); }
+      .brand-name, .brand-sub, .nav-section-label,
+      .nav-links li a span.nav-label,
+      .game-btn-title, .game-btn-arrow,
+      .sidebar-footer, .search-wrap { display: none; }
+      .search-wrap { display: none; }
+      #home-view { padding: 24px; }
+      .hero h2 { font-size: 22px; }
+      #game-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Animated star background canvas -->
+<canvas id="star-canvas"></canvas>
+
+<div id="app">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <nav id="sidebar">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-star-of-life"></i></div>
+      <div>
+        <div class="brand-name">COSMIC</div>
+        <div class="brand-sub">EDITION</div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <div class="search-inner">
+        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input id="search-input" type="text" placeholder="Search games..." autocomplete="off" />
+      </div>
+    </div>
+
+    <!-- Nav links -->
+    <span class="nav-section-label">Navigate</span>
+    <ul class="nav-links">
+      <li>
+        <a href="#" class="active" id="nav-home" onclick="showView('home'); return false;">
+          <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+          <span class="nav-label">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" id="nav-about" onclick="showView('about'); return false;">
+          <span class="nav-icon"><i class="fa-solid fa-circle-info"></i></span>
+          <span class="nav-label">About</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- ============================================================
+         GAME LIST — Add / remove games here in HTML or via the JS
+         array below. Buttons are generated from the GAMES array.
+    ============================================================ -->
+    <span class="nav-section-label">Games</span>
+    <div id="game-list-wrap">
+      <div id="game-list">
+        <!-- Generated by JS from GAMES array -->
+      </div>
+      <div class="no-results" id="no-results">No games found</div>
+    </div>
+
+    <div class="sidebar-footer">
+      © COSMIC EDITION &nbsp;·&nbsp; v1.0
+    </div>
+  </nav>
+  <!-- END SIDEBAR -->
+
+  <!-- ===================== MAIN ===================== -->
+  <main id="main">
+
+    <div id="topbar">
+      <h1>COSMIC <span>EDITION</span></h1>
+      <div class="topbar-spacer"></div>
+      <div class="game-count-badge" id="game-count-badge">0 GAMES</div>
+    </div>
+
+    <!-- HOME VIEW -->
+    <div id="home-view">
+
+      <div class="hero">
+        <div class="hero-eyebrow"><i class="fa-solid fa-star"></i> Welcome to the arcade</div>
+        <h2>Your personal<br/><em>Cosmic Arcade</em></h2>
+        <p>Launch any game below. All games run right here in the page — no new tabs, no distractions. Use the controls inside each game window to go fullscreen or pop out.</p>
+      </div>
+
+      <div class="section-title">ALL GAMES</div>
+      <div id="game-grid">
+        <!-- Generated by JS from GAMES array -->
+      </div>
+
+    </div>
+
+    <!-- ABOUT VIEW -->
+    <div id="about-view">
+      <div class="about-card">
+        <h3>About Cosmic Edition</h3>
+        <p>
+          Cosmic Edition is a self-hosted game launcher. Drop your HTML game files into folders and add them to the <code>GAMES</code> array in the script. Each game opens in an overlay iframe with fullscreen, new-tab, and refresh controls.
+        </p>
+        <p>
+          To add a new game, find the <code>GAMES</code> array in the <code>&lt;script&gt;</code> section at the bottom of this file and add an entry:
+        </p>
+        <p>
+          <code>{ title: "My Game", path: "mygame/index.html", icon: '&lt;i class="fa-solid fa-gamepad"&gt;&lt;/i&gt;', desc: "Description" }</code>
+        </p>
+        <p>
+          Games are loaded via <code>&lt;iframe&gt;</code>. Make sure your game files are served from the same origin (e.g. a local dev server or static host).
+        </p>
+      </div>
+    </div>
+
+  </main>
+  <!-- END MAIN -->
+
+</div><!-- END APP -->
+
+<!-- ===================== GAME OVERLAY ===================== -->
+<div id="overlay">
+  <div class="overlay-window">
+
+    <!-- Title bar -->
+    <div class="overlay-bar">
+      <div class="overlay-dots">
+        <span class="dot-red"></span>
+        <span class="dot-yellow"></span>
+        <span class="dot-green"></span>
+      </div>
+
+      <div id="overlay-title">GAME</div>
+
+      <div class="overlay-controls">
+        <!-- Refresh -->
+        <button class="ov-btn" id="btn-refresh" title="Reload game" onclick="refreshGame()">
+          <i class="fa-solid fa-rotate-right"></i> Refresh
+        </button>
+        <!-- New tab -->
+        <button class="ov-btn" id="btn-newtab" title="Open in new tab" onclick="openNewTab()">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
+        </button>
+        <!-- Fullscreen -->
+        <button class="ov-btn" id="btn-fs" title="Fullscreen" onclick="toggleFullscreen()">
+          <i class="fa-solid fa-expand"></i> Fullscreen
+        </button>
+        <!-- Close -->
+        <button class="ov-btn ov-btn-close" id="btn-close" title="Close" onclick="closeOverlay()">
+          <i class="fa-solid fa-xmark"></i> Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Game iframe -->
+    <iframe id="game-frame" title="Game" allowfullscreen></iframe>
+
+  </div>
+</div>
+<!-- END OVERLAY -->
+
+
+<script>
+/* ================================================================
+   GAMES ARRAY
+   ----------------------------------------------------------------
+   Add or remove games here. Each entry:
+     title  — Display name shown on buttons & cards
+     path   — Relative path to the game's index.html
+     icon   — Font Awesome icon HTML (fa-solid fa-* class)
+     desc   — Short description shown on the main grid card
+   ================================================================ */
+const GAMES = [
+  {
+    title: "Space Invaders",
+    path:  "games/space-invaders/index.html",   // 🔧 Replace folder name with your actual game folder
+    icon:  '<i class="fa-solid fa-robot"></i>',
+    desc:  "Classic arcade shooter — defend Earth from alien waves."
+  },
+  {
+    title: "Asteroid Drift",
+    path:  "games/asteroid-drift/index.html",   // 🔧 Replace folder name with your actual game folder
+    icon:  '<i class="fa-solid fa-meteor"></i>',
+    desc:  "Navigate a ship through an endless asteroid field."
+  }
+  /* ---- Add more games below this line ----
+  ,{
+    title: "My New Game",
+    path:  "games/my-new-game/index.html",
+    icon:  '<i class="fa-solid fa-gamepad"></i>',
+    desc:  "Short description of the game."
+  }
+  */
+];
+
+/* ================================================================
+   STAR CANVAS — Animated particle background
+   ================================================================ */
+(function initStars() {
+  const canvas = document.getElementById('star-canvas');
+  const ctx    = canvas.getContext('2d');
+  let stars = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function createStars() {
+    stars = [];
+    const count = Math.floor((W * H) / 3500);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x:     Math.random() * W,
+        y:     Math.random() * H,
+        r:     Math.random() * 1.4 + 0.2,
+        alpha: Math.random() * 0.7 + 0.1,
+        speed: Math.random() * 0.012 + 0.003,
+        dir:   Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function draw(ts) {
+    ctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      // Twinkle
+      s.alpha += Math.sin(ts * 0.001 * s.speed * 10) * 0.003;
+      s.alpha  = Math.max(0.05, Math.min(0.85, s.alpha));
+      // Slow drift
+      s.x += Math.cos(s.dir) * s.speed;
+      s.y += Math.sin(s.dir) * s.speed;
+      // Wrap
+      if (s.x < 0) s.x = W;
+      if (s.x > W) s.x = 0;
+      if (s.y < 0) s.y = H;
+      if (s.y > H) s.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(180, 220, 255, ${s.alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createStars(); });
+  resize();
+  createStars();
+  requestAnimationFrame(draw);
+})();
+
+/* ================================================================
+   BUILD UI FROM GAMES ARRAY
+   ================================================================ */
+let currentGamePath = '';
+let currentGameTitle = '';
+
+function buildUI() {
+  const listEl  = document.getElementById('game-list');
+  const gridEl  = document.getElementById('game-grid');
+  const badge   = document.getElementById('game-count-badge');
+
+  listEl.innerHTML  = '';
+  gridEl.innerHTML  = '';
+  badge.textContent = `${GAMES.length} GAME${GAMES.length !== 1 ? 'S' : ''}`;
+
+  GAMES.forEach((game, i) => {
+    // ---- Sidebar button ----
+    const btn = document.createElement('button');
+    btn.className = 'game-btn';
+    btn.dataset.title = game.title.toLowerCase();
+    btn.innerHTML = `
+      <span class="game-btn-icon">${game.icon}</span>
+      <span class="game-btn-title">${game.title}</span>
+      <span class="game-btn-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    `;
+    btn.addEventListener('click', () => launchGame(game));
+    listEl.appendChild(btn);
+
+    // ---- Main grid card ----
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = `
+      <span class="game-card-icon">${game.icon}</span>
+      <div class="game-card-title">${game.title}</div>
+      <div class="game-card-desc">${game.desc}</div>
+      <div class="game-card-launch"><i class="fa-solid fa-play"></i> LAUNCH</div>
+    `;
+    card.addEventListener('click', () => launchGame(game));
+    gridEl.appendChild(card);
+  });
+}
+
+/* ================================================================
+   SEARCH FILTER
+   ================================================================ */
+document.getElementById('search-input').addEventListener('input', function () {
+  const query   = this.value.toLowerCase().trim();
+  const buttons = document.querySelectorAll('.game-btn');
+  let   anyVisible = false;
+
+  buttons.forEach(btn => {
+    const match = btn.dataset.title.includes(query);
+    btn.style.display = match ? '' : 'none';
+    if (match) anyVisible = true;
+  });
+
+  document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
+});
+
+/* ================================================================
+   OVERLAY: Launch, Close, Refresh, Fullscreen, New Tab
+   ================================================================ */
+function launchGame(game) {
+  currentGamePath  = game.path;
+  currentGameTitle = game.title;
+
+  const overlay = document.getElementById('overlay');
+  const frame   = document.getElementById('game-frame');
+  const title   = document.getElementById('overlay-title');
+
+  title.textContent = game.title.toUpperCase();
+  frame.src = game.path;
+  overlay.classList.add('active');
+
+  // Prevent body scroll when overlay open
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+  const overlay = document.getElementById('overlay');
+  const frame   = document.getElementById('game-frame');
+  overlay.classList.remove('active');
+  // Small delay so animation finishes before clearing src
+  setTimeout(() => { frame.src = ''; }, 350);
+  document.body.style.overflow = '';
+}
+
+function refreshGame() {
+  const frame = document.getElementById('game-frame');
+  frame.src = frame.src; // reload
+}
+
+function toggleFullscreen() {
+  const frame = document.getElementById('game-frame');
+  if (frame.requestFullscreen) {
+    frame.requestFullscreen();
+  } else if (frame.webkitRequestFullscreen) {
+    frame.webkitRequestFullscreen();
+  } else if (frame.mozRequestFullScreen) {
+    frame.mozRequestFullScreen();
+  }
+}
+
+function openNewTab() {
+  // Opens the direct path in a new tab
+  window.open(currentGamePath, '_blank');
+}
+
+// Close overlay when clicking the dark backdrop (outside window)
+document.getElementById('overlay').addEventListener('click', function (e) {
+  if (e.target === this) closeOverlay();
+});
+
+// Keyboard: Escape to close
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeOverlay();
+});
+
+/* ================================================================
+   VIEW SWITCHING (Home / About)
+   ================================================================ */
+function showView(view) {
+  const homeView  = document.getElementById('home-view');
+  const aboutView = document.getElementById('about-view');
+  const navHome   = document.getElementById('nav-home');
+  const navAbout  = document.getElementById('nav-about');
+
+  if (view === 'home') {
+    homeView.classList.remove('hidden');
+    aboutView.classList.remove('visible');
+    navHome.classList.add('active');
+    navAbout.classList.remove('active');
+  } else {
+    homeView.classList.add('hidden');
+    aboutView.classList.add('visible');
+    navHome.classList.remove('active');
+    navAbout.classList.add('active');
+  }
+}
+
+/* ================================================================
+   INIT
+   ================================================================ */
+buildUI();
+</script>
+</body>
+</html>
