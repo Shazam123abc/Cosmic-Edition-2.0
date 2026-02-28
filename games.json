@@ -30,6 +30,12 @@
     "hasIframe": false
   },
   {
+    "name": "ShazyOS",
+    "path": "Games/ShazyOS.html",
+    "iframe": "iframe/ShazyOS.html",
+    "hasIframe": false
+  },
+  {
     "name": "Smash Hit Ripoff",
     "path": "Games/Smash Hit Ripoff.html",
     "iframe": "iframe/Smash Hit Ripoff.html",
