@@ -14856,6 +14856,12 @@
     "hasIframe": false
   },
   {
+    "name": "five-nights-at-epstiens",
+    "path": "Games/five-nights-at-epstiens.html",
+    "iframe": "iframe/five-nights-at-epstiens.html",
+    "hasIframe": false
+  },
+  {
     "name": "lime",
     "path": "Games/lime.html",
     "iframe": "iframe/lime.html",
