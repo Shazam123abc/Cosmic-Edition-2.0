@@ -463,9 +463,41 @@ window.addEventListener('scroll',()=>{
 });
 
 /* OVERLAY */
-function launchGame(g){ currentPath=g.path; document.getElementById('ov-title').textContent=g.title.toUpperCase(); document.getElementById('game-frame').src=g.path; document.getElementById('overlay').classList.add('active'); }
+let currentBlobURL = null;
+
+async function launchGame(g){
+  currentPath = g.path;
+  document.getElementById('ov-title').textContent = g.title.toUpperCase();
+  document.getElementById('overlay').classList.add('active');
+  const frame = document.getElementById('game-frame');
+  frame.src = 'about:blank';
+
+  try {
+    const res = await fetch(g.path);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    let html = await res.text();
+
+    // Strip <Module> / <Content> wrapper — extract just the <html>...</html> part
+    const match = html.match(/<html[\s\S]*<\/html>/i);
+    if (match) html = match[0];
+
+    // Revoke previous blob to free memory
+    if (currentBlobURL) { URL.revokeObjectURL(currentBlobURL); currentBlobURL = null; }
+
+    // Create a real HTML blob — Chrome will execute it like a normal page
+    const blob = new Blob([html], { type: 'text/html' });
+    currentBlobURL = URL.createObjectURL(blob);
+    frame.src = currentBlobURL;
+
+  } catch(e) {
+    console.error('Game load failed:', e.message);
+    // Show error inside the iframe
+    const blob = new Blob([`<body style="background:#111;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><div style="text-align:center"><div style="font-size:48px;margin-bottom:16px">⚠️</div><div>Failed to load game</div><div style="color:#666;font-size:13px;margin-top:8px">${e.message}</div></div></body>`], {type:'text/html'});
+    frame.src = URL.createObjectURL(blob);
+  }
+}
 function closeOverlay(){ document.getElementById('overlay').classList.remove('active'); setTimeout(()=>document.getElementById('game-frame').src='',350); }
-function refreshGame(){ const f=document.getElementById('game-frame'); f.src=f.src; }
+function refreshGame(){ if(currentPath) launchGame({path:currentPath, title:document.getElementById('ov-title').textContent}); }
 function toggleFullscreen(){ const f=document.getElementById('game-frame'); (f.requestFullscreen||f.webkitRequestFullscreen||f.mozRequestFullScreen).call(f); }
 function openNewTab(){ window.open(currentPath,'_blank'); }
 document.getElementById('overlay').addEventListener('click',e=>{ if(e.target===document.getElementById('overlay'))closeOverlay(); });
@@ -475,11 +507,11 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeOverlay(); });
 function parseEntry(item,i){
   if(typeof item==='string'){
     const clean=cleanName(item);
-    return { title:titleify(clean), path:`https://${GITHUB_USER}.github.io/${GITHUB_REPO}/${GAMES_FOLDER}/${clean}.html`, iconIdx:i };
+    return { title:titleify(clean), path:`https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@main/${GAMES_FOLDER}/${clean}.html`, iconIdx:i };
   }
   const name=item.name||item.title||item.folder||'';
   const filePath=item.path||`${GAMES_FOLDER}/${name}.html`;
-  return { title:titleify(cleanName(name)), path:`https://${GITHUB_USER}.github.io/${GITHUB_REPO}/${filePath}`, iconIdx:i };
+  return { title:titleify(cleanName(name)), path:`https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@main/${filePath}`, iconIdx:i };
 }
 
 /* FETCH — GitHub API first (works from file://), then CDN, then raw */
