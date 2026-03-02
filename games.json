@@ -24,6 +24,12 @@
     "hasIframe": false
   },
   {
+    "name": "Escape Road 2",
+    "path": "Games/Escape Road 2.html",
+    "iframe": "iframe/Escape Road 2.html",
+    "hasIframe": false
+  },
+  {
     "name": "Helios-Offline (1)",
     "path": "Games/Helios-Offline (1).html",
     "iframe": "iframe/Helios-Offline (1).html",
