@@ -12,6 +12,12 @@
     "hasIframe": false
   },
   {
+    "name": "Cookie Clicker",
+    "path": "Games/Cookie Clicker.html",
+    "iframe": "iframe/Cookie Clicker.html",
+    "hasIframe": false
+  },
+  {
     "name": "Eaglercraft-Indev-Offline (1)",
     "path": "Games/Eaglercraft-Indev-Offline (1).html",
     "iframe": "iframe/Eaglercraft-Indev-Offline (1).html",
