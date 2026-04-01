@@ -1,5 +1,11 @@
 [
   {
+    "name": "Brotato",
+    "path": "Games/Brotato.html",
+    "iframe": "iframe/Brotato.html",
+    "hasIframe": false
+  },
+  {
     "name": "Buckshot Roulette (1)",
     "path": "Games/Buckshot Roulette (1).html",
     "iframe": "iframe/Buckshot Roulette (1).html",
