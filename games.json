@@ -42,6 +42,12 @@
     "hasIframe": false
   },
   {
+    "name": "Hollow Knight_ Silksong",
+    "path": "Games/Hollow Knight_ Silksong.html",
+    "iframe": "iframe/Hollow Knight_ Silksong.html",
+    "hasIframe": false
+  },
+  {
     "name": "MINECRAFTTOWERDEFENSE",
     "path": "Games/MINECRAFTTOWERDEFENSE.html",
     "iframe": "iframe/MINECRAFTTOWERDEFENSE.html",
