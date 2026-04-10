@@ -1,3 +1,8 @@
 [
-
+  {
+    "name": "paperio2",
+    "path": "Games/paperio2.html",
+    "iframe": "iframe/paperio2.html",
+    "hasIframe": false
+  }
 ]
