@@ -14,10 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Scan Games folder and generate games.json
+      - name: Scan Games folder and generate games2.json
         run: |
           echo "Scanning Games folder..."
-          echo "[" > games.json
+          echo "[" > games2.json
           first=true
 
           # Use find instead of glob — handles unlimited number of files
@@ -35,32 +35,32 @@ jobs:
               if [ "$first" = true ]; then
                 first=false
               else
-                echo "," >> games.json
+                echo "," >> games2.json
               fi
 
-              echo "  {" >> games.json
-              echo "    \"name\": \"${gameName}\"," >> games.json
-              echo "    \"path\": \"Games/${gameName}.html\"," >> games.json
-              echo "    \"iframe\": \"iframe/${gameName}.html\"," >> games.json
-              echo "    \"hasIframe\": ${hasIframe}" >> games.json
-              echo -n "  }" >> games.json
+              echo "  {" >> games2.json
+              echo "    \"name\": \"${gameName}\"," >> games2.json
+              echo "    \"path\": \"Games/${gameName}.html\"," >> games2.json
+              echo "    \"iframe\": \"iframe/${gameName}.html\"," >> games2.json
+              echo "    \"hasIframe\": ${hasIframe}" >> games2.json
+              echo -n "  }" >> games2.json
             fi
           done < <(find Games -maxdepth 1 -name "*.html" -type f | sort)
 
-          echo "" >> games.json
-          echo "]" >> games.json
+          echo "" >> games2.json
+          echo "]" >> games2.json
 
           echo "Done. Total games:"
-          grep -c '"name"' games.json || echo "0"
+          grep -c '"name"' games2.json || echo "0"
 
-      - name: Commit games.json
+      - name: Commit games2.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add games.json
+          git add games2.json
           if git diff --staged --quiet; then
-            echo "No changes to games.json, skipping commit."
+            echo "No changes to games2.json, skipping commit."
           else
-            git commit -m "chore: update games.json [skip ci]"
+            git commit -m "chore: update games2.json [skip ci]"
             git push
           fi
