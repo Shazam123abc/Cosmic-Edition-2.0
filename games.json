@@ -1,8 +1,350 @@
 [
   {
+    "name": "1on1soccer",
+    "path": "Games/1on1soccer.html",
+    "iframe": "iframe/1on1soccer.html",
+    "hasIframe": false
+  },
+  {
+    "name": "2048",
+    "path": "Games/2048.html",
+    "iframe": "iframe/2048.html",
+    "hasIframe": false
+  },
+  {
+    "name": "2048cupcakes",
+    "path": "Games/2048cupcakes.html",
+    "iframe": "iframe/2048cupcakes.html",
+    "hasIframe": false
+  },
+  {
+    "name": "Alpha_1.2.6",
+    "path": "Games/Alpha_1.2.6.html",
+    "iframe": "iframe/Alpha_1.2.6.html",
+    "hasIframe": false
+  },
+  {
+    "name": "Beta_1.3",
+    "path": "Games/Beta_1.3.html",
+    "iframe": "iframe/Beta_1.3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "Indev",
+    "path": "Games/Indev.html",
+    "iframe": "iframe/Indev.html",
+    "hasIframe": false
+  },
+  {
+    "name": "agariolite",
+    "path": "Games/agariolite.html",
+    "iframe": "iframe/agariolite.html",
+    "hasIframe": false
+  },
+  {
+    "name": "awesometanks",
+    "path": "Games/awesometanks.html",
+    "iframe": "iframe/awesometanks.html",
+    "hasIframe": false
+  },
+  {
+    "name": "badicecream3",
+    "path": "Games/badicecream3.html",
+    "iframe": "iframe/badicecream3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "basketballlegends",
+    "path": "Games/basketballlegends.html",
+    "iframe": "iframe/basketballlegends.html",
+    "hasIframe": false
+  },
+  {
+    "name": "basketrandom",
+    "path": "Games/basketrandom.html",
+    "iframe": "iframe/basketrandom.html",
+    "hasIframe": false
+  },
+  {
+    "name": "bloonsTD2",
+    "path": "Games/bloonsTD2.html",
+    "iframe": "iframe/bloonsTD2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "bloonsTD3",
+    "path": "Games/bloonsTD3.html",
+    "iframe": "iframe/bloonsTD3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "bloonsTD4",
+    "path": "Games/bloonsTD4.html",
+    "iframe": "iframe/bloonsTD4.html",
+    "hasIframe": false
+  },
+  {
+    "name": "bloxorz",
+    "path": "Games/bloxorz.html",
+    "iframe": "iframe/bloxorz.html",
+    "hasIframe": false
+  },
+  {
+    "name": "circloO",
+    "path": "Games/circloO.html",
+    "iframe": "iframe/circloO.html",
+    "hasIframe": false
+  },
+  {
+    "name": "circloO2",
+    "path": "Games/circloO2.html",
+    "iframe": "iframe/circloO2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "clashofvikings",
+    "path": "Games/clashofvikings.html",
+    "iframe": "iframe/clashofvikings.html",
+    "hasIframe": false
+  },
+  {
+    "name": "deathrun3D",
+    "path": "Games/deathrun3D.html",
+    "iframe": "iframe/deathrun3D.html",
+    "hasIframe": false
+  },
+  {
+    "name": "doodlejump",
+    "path": "Games/doodlejump.html",
+    "iframe": "iframe/doodlejump.html",
+    "hasIframe": false
+  },
+  {
+    "name": "drawclimber",
+    "path": "Games/drawclimber.html",
+    "iframe": "iframe/drawclimber.html",
+    "hasIframe": false
+  },
+  {
+    "name": "ducklife",
+    "path": "Games/ducklife.html",
+    "iframe": "iframe/ducklife.html",
+    "hasIframe": false
+  },
+  {
+    "name": "ducklife2",
+    "path": "Games/ducklife2.html",
+    "iframe": "iframe/ducklife2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "evilglitch",
+    "path": "Games/evilglitch.html",
+    "iframe": "iframe/evilglitch.html",
+    "hasIframe": false
+  },
+  {
+    "name": "fireboyandwatergirl",
+    "path": "Games/fireboyandwatergirl.html",
+    "iframe": "iframe/fireboyandwatergirl.html",
+    "hasIframe": false
+  },
+  {
+    "name": "flappybird",
+    "path": "Games/flappybird.html",
+    "iframe": "iframe/flappybird.html",
+    "hasIframe": false
+  },
+  {
+    "name": "floodrunner2",
+    "path": "Games/floodrunner2.html",
+    "iframe": "iframe/floodrunner2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "footballlegends",
+    "path": "Games/footballlegends.html",
+    "iframe": "iframe/footballlegends.html",
+    "hasIframe": false
+  },
+  {
+    "name": "funnybattle",
+    "path": "Games/funnybattle.html",
+    "iframe": "iframe/funnybattle.html",
+    "hasIframe": false
+  },
+  {
+    "name": "getontop",
+    "path": "Games/getontop.html",
+    "iframe": "iframe/getontop.html",
+    "hasIframe": false
+  },
+  {
+    "name": "googledino",
+    "path": "Games/googledino.html",
+    "iframe": "iframe/googledino.html",
+    "hasIframe": false
+  },
+  {
+    "name": "hanger2",
+    "path": "Games/hanger2.html",
+    "iframe": "iframe/hanger2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "helixjump",
+    "path": "Games/helixjump.html",
+    "iframe": "iframe/helixjump.html",
+    "hasIframe": false
+  },
+  {
+    "name": "hillclimbracinglite",
+    "path": "Games/hillclimbracinglite.html",
+    "iframe": "iframe/hillclimbracinglite.html",
+    "hasIframe": false
+  },
+  {
+    "name": "idlebreakout",
+    "path": "Games/idlebreakout.html",
+    "iframe": "iframe/idlebreakout.html",
+    "hasIframe": false
+  },
+  {
+    "name": "ironsnout",
+    "path": "Games/ironsnout.html",
+    "iframe": "iframe/ironsnout.html",
+    "hasIframe": false
+  },
+  {
+    "name": "johnnytrigger",
+    "path": "Games/johnnytrigger.html",
+    "iframe": "iframe/johnnytrigger.html",
+    "hasIframe": false
+  },
+  {
+    "name": "jumpingshell",
+    "path": "Games/jumpingshell.html",
+    "iframe": "iframe/jumpingshell.html",
+    "hasIframe": false
+  },
+  {
+    "name": "learntofly",
+    "path": "Games/learntofly.html",
+    "iframe": "iframe/learntofly.html",
+    "hasIframe": false
+  },
+  {
+    "name": "learntoflyidle",
+    "path": "Games/learntoflyidle.html",
+    "iframe": "iframe/learntoflyidle.html",
+    "hasIframe": false
+  },
+  {
+    "name": "mergeroundracers",
+    "path": "Games/mergeroundracers.html",
+    "iframe": "iframe/mergeroundracers.html",
+    "hasIframe": false
+  },
+  {
+    "name": "minesweeper",
+    "path": "Games/minesweeper.html",
+    "iframe": "iframe/minesweeper.html",
+    "hasIframe": false
+  },
+  {
+    "name": "monstertracks",
+    "path": "Games/monstertracks.html",
+    "iframe": "iframe/monstertracks.html",
+    "hasIframe": false
+  },
+  {
+    "name": "motox3m3",
+    "path": "Games/motox3m3.html",
+    "iframe": "iframe/motox3m3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "oppositeday",
+    "path": "Games/oppositeday.html",
+    "iframe": "iframe/oppositeday.html",
+    "hasIframe": false
+  },
+  {
+    "name": "ovo",
+    "path": "Games/ovo.html",
+    "iframe": "iframe/ovo.html",
+    "hasIframe": false
+  },
+  {
+    "name": "pacman",
+    "path": "Games/pacman.html",
+    "iframe": "iframe/pacman.html",
+    "hasIframe": false
+  },
+  {
+    "name": "papaspizzeria",
+    "path": "Games/papaspizzeria.html",
+    "iframe": "iframe/papaspizzeria.html",
+    "hasIframe": false
+  },
+  {
     "name": "paperio2",
     "path": "Games/paperio2.html",
     "iframe": "iframe/paperio2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "parkingfury2",
+    "path": "Games/parkingfury2.html",
+    "iframe": "iframe/parkingfury2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "parkingfury3",
+    "path": "Games/parkingfury3.html",
+    "iframe": "iframe/parkingfury3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "picosschool",
+    "path": "Games/picosschool.html",
+    "iframe": "iframe/picosschool.html",
+    "hasIframe": false
+  },
+  {
+    "name": "pingpongchaos",
+    "path": "Games/pingpongchaos.html",
+    "iframe": "iframe/pingpongchaos.html",
+    "hasIframe": false
+  },
+  {
+    "name": "pixelspeedrun",
+    "path": "Games/pixelspeedrun.html",
+    "iframe": "iframe/pixelspeedrun.html",
+    "hasIframe": false
+  },
+  {
+    "name": "plonky",
+    "path": "Games/plonky.html",
+    "iframe": "iframe/plonky.html",
+    "hasIframe": false
+  },
+  {
+    "name": "tag",
+    "path": "Games/tag.html",
+    "iframe": "iframe/tag.html",
+    "hasIframe": false
+  },
+  {
+    "name": "tinyfishing",
+    "path": "Games/tinyfishing.html",
+    "iframe": "iframe/tinyfishing.html",
+    "hasIframe": false
+  },
+  {
+    "name": "zombierush",
+    "path": "Games/zombierush.html",
+    "iframe": "iframe/zombierush.html",
     "hasIframe": false
   }
 ]
