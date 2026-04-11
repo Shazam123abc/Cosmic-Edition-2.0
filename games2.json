@@ -6,6 +6,12 @@
     "hasIframe": false
   },
   {
+    "name": "1v1.lol",
+    "path": "Games/1v1.lol.html",
+    "iframe": "iframe/1v1.lol.html",
+    "hasIframe": false
+  },
+  {
     "name": "2048",
     "path": "Games/2048.html",
     "iframe": "iframe/2048.html",
@@ -36,9 +42,33 @@
     "hasIframe": false
   },
   {
+    "name": "PaperMinecraft1.15.1",
+    "path": "Games/PaperMinecraft1.15.1.html",
+    "iframe": "iframe/PaperMinecraft1.15.1.html",
+    "hasIframe": false
+  },
+  {
     "name": "agariolite",
     "path": "Games/agariolite.html",
     "iframe": "iframe/agariolite.html",
+    "hasIframe": false
+  },
+  {
+    "name": "ageofwar",
+    "path": "Games/ageofwar.html",
+    "iframe": "iframe/ageofwar.html",
+    "hasIframe": false
+  },
+  {
+    "name": "agesofconflict",
+    "path": "Games/agesofconflict.html",
+    "iframe": "iframe/agesofconflict.html",
+    "hasIframe": false
+  },
+  {
+    "name": "angrybirdsspace",
+    "path": "Games/angrybirdsspace.html",
+    "iframe": "iframe/angrybirdsspace.html",
     "hasIframe": false
   },
   {
@@ -90,6 +120,30 @@
     "hasIframe": false
   },
   {
+    "name": "bobtherobber",
+    "path": "Games/bobtherobber.html",
+    "iframe": "iframe/bobtherobber.html",
+    "hasIframe": false
+  },
+  {
+    "name": "bobtherobber2",
+    "path": "Games/bobtherobber2.html",
+    "iframe": "iframe/bobtherobber2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "bowmasters",
+    "path": "Games/bowmasters.html",
+    "iframe": "iframe/bowmasters.html",
+    "hasIframe": false
+  },
+  {
+    "name": "cardrawing",
+    "path": "Games/cardrawing.html",
+    "iframe": "iframe/cardrawing.html",
+    "hasIframe": false
+  },
+  {
     "name": "circloO",
     "path": "Games/circloO.html",
     "iframe": "iframe/circloO.html",
@@ -108,9 +162,39 @@
     "hasIframe": false
   },
   {
+    "name": "cleanupio",
+    "path": "Games/cleanupio.html",
+    "iframe": "iframe/cleanupio.html",
+    "hasIframe": false
+  },
+  {
+    "name": "clusterrush",
+    "path": "Games/clusterrush.html",
+    "iframe": "iframe/clusterrush.html",
+    "hasIframe": false
+  },
+  {
+    "name": "crazycrashlanding",
+    "path": "Games/crazycrashlanding.html",
+    "iframe": "iframe/crazycrashlanding.html",
+    "hasIframe": false
+  },
+  {
+    "name": "crazymotorcycle",
+    "path": "Games/crazymotorcycle.html",
+    "iframe": "iframe/crazymotorcycle.html",
+    "hasIframe": false
+  },
+  {
     "name": "deathrun3D",
     "path": "Games/deathrun3D.html",
     "iframe": "iframe/deathrun3D.html",
+    "hasIframe": false
+  },
+  {
+    "name": "demolitionderbycrashracing",
+    "path": "Games/demolitionderbycrashracing.html",
+    "iframe": "iframe/demolitionderbycrashracing.html",
     "hasIframe": false
   },
   {
@@ -138,6 +222,30 @@
     "hasIframe": false
   },
   {
+    "name": "ducklife3",
+    "path": "Games/ducklife3.html",
+    "iframe": "iframe/ducklife3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "ducklife5",
+    "path": "Games/ducklife5.html",
+    "iframe": "iframe/ducklife5.html",
+    "hasIframe": false
+  },
+  {
+    "name": "earntodie",
+    "path": "Games/earntodie.html",
+    "iframe": "iframe/earntodie.html",
+    "hasIframe": false
+  },
+  {
+    "name": "escaperoad2",
+    "path": "Games/escaperoad2.html",
+    "iframe": "iframe/escaperoad2.html",
+    "hasIframe": false
+  },
+  {
     "name": "evilglitch",
     "path": "Games/evilglitch.html",
     "iframe": "iframe/evilglitch.html",
@@ -162,6 +270,24 @@
     "hasIframe": false
   },
   {
+    "name": "floodrunner3",
+    "path": "Games/floodrunner3.html",
+    "iframe": "iframe/floodrunner3.html",
+    "hasIframe": false
+  },
+  {
+    "name": "fnaf4",
+    "path": "Games/fnaf4.html",
+    "iframe": "iframe/fnaf4.html",
+    "hasIframe": false
+  },
+  {
+    "name": "footballbros",
+    "path": "Games/footballbros.html",
+    "iframe": "iframe/footballbros.html",
+    "hasIframe": false
+  },
+  {
     "name": "footballlegends",
     "path": "Games/footballlegends.html",
     "iframe": "iframe/footballlegends.html",
@@ -171,6 +297,18 @@
     "name": "funnybattle",
     "path": "Games/funnybattle.html",
     "iframe": "iframe/funnybattle.html",
+    "hasIframe": false
+  },
+  {
+    "name": "funnybattle2",
+    "path": "Games/funnybattle2.html",
+    "iframe": "iframe/funnybattle2.html",
+    "hasIframe": false
+  },
+  {
+    "name": "geometryvibes",
+    "path": "Games/geometryvibes.html",
+    "iframe": "iframe/geometryvibes.html",
     "hasIframe": false
   },
   {
@@ -195,6 +333,12 @@
     "name": "helixjump",
     "path": "Games/helixjump.html",
     "iframe": "iframe/helixjump.html",
+    "hasIframe": false
+  },
+  {
+    "name": "highwaytraffic",
+    "path": "Games/highwaytraffic.html",
+    "iframe": "iframe/highwaytraffic.html",
     "hasIframe": false
   },
   {
@@ -228,6 +372,12 @@
     "hasIframe": false
   },
   {
+    "name": "kartbros",
+    "path": "Games/kartbros.html",
+    "iframe": "iframe/kartbros.html",
+    "hasIframe": false
+  },
+  {
     "name": "learntofly",
     "path": "Games/learntofly.html",
     "iframe": "iframe/learntofly.html",
@@ -240,6 +390,12 @@
     "hasIframe": false
   },
   {
+    "name": "melonplayground",
+    "path": "Games/melonplayground.html",
+    "iframe": "iframe/melonplayground.html",
+    "hasIframe": false
+  },
+  {
     "name": "mergeroundracers",
     "path": "Games/mergeroundracers.html",
     "iframe": "iframe/mergeroundracers.html",
@@ -249,6 +405,12 @@
     "name": "minesweeper",
     "path": "Games/minesweeper.html",
     "iframe": "iframe/minesweeper.html",
+    "hasIframe": false
+  },
+  {
+    "name": "mini_metro",
+    "path": "Games/mini_metro.html",
+    "iframe": "iframe/mini_metro.html",
     "hasIframe": false
   },
   {
@@ -282,9 +444,33 @@
     "hasIframe": false
   },
   {
+    "name": "papashotdoggeria",
+    "path": "Games/papashotdoggeria.html",
+    "iframe": "iframe/papashotdoggeria.html",
+    "hasIframe": false
+  },
+  {
     "name": "papaspizzeria",
     "path": "Games/papaspizzeria.html",
     "iframe": "iframe/papaspizzeria.html",
+    "hasIframe": false
+  },
+  {
+    "name": "papasscooperia",
+    "path": "Games/papasscooperia.html",
+    "iframe": "iframe/papasscooperia.html",
+    "hasIframe": false
+  },
+  {
+    "name": "papassushiria",
+    "path": "Games/papassushiria.html",
+    "iframe": "iframe/papassushiria.html",
+    "hasIframe": false
+  },
+  {
+    "name": "papastacomia",
+    "path": "Games/papastacomia.html",
+    "iframe": "iframe/papastacomia.html",
     "hasIframe": false
   },
   {
@@ -324,6 +510,12 @@
     "hasIframe": false
   },
   {
+    "name": "plantsvszombies",
+    "path": "Games/plantsvszombies.html",
+    "iframe": "iframe/plantsvszombies.html",
+    "hasIframe": false
+  },
+  {
     "name": "plonky",
     "path": "Games/plonky.html",
     "iframe": "iframe/plonky.html",
@@ -339,6 +531,12 @@
     "name": "tinyfishing",
     "path": "Games/tinyfishing.html",
     "iframe": "iframe/tinyfishing.html",
+    "hasIframe": false
+  },
+  {
+    "name": "vex4",
+    "path": "Games/vex4.html",
+    "iframe": "iframe/vex4.html",
     "hasIframe": false
   },
   {
